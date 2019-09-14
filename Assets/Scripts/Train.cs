@@ -29,9 +29,7 @@ public class Train : MonoBehaviour
             var d = i; 
             Run.After(0.4f, () =>
             {
-              
-                Debug.Log(i);
-                Debug.Log(d);
+                
                 wagons[d].FollowPath(path);
               });
            
