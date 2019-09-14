@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public CustomizationManager customizationManager;
     public ApiManager apiManager;
     public List<Train> trains;
+    public List<Vector3> beziers = new List<Vector3>();
     public const float cityHeight = 1.276719f;
     // Start is called before the first frame update
     private void Awake()
@@ -46,12 +47,8 @@ public class GameManager : MonoBehaviour
     {
 	    LoadCities();
         var t = MakeTrain("Tomek", TrainTypes.Thomans, new Vector3(0, 0, 0));
-        var l = MakeBezierBetweenTwoPoints(new Vector3(14, 0, 25), new Vector3(0, 0, 0), 15);
-        for (var i2 =0; i2<l.Item1.Count-1; i2+=90){
-	        Debug.DrawLine(l.Item1[i2], l.Item1[i2+1], Color.red, 1000);
 
-        }
-        
+        LoadTrains();
 
         foreach (var user in apiManager.users)
         {
@@ -160,11 +157,14 @@ public class GameManager : MonoBehaviour
 		    if (i < stationsToMake - 1)
 		    {
 			    Point nextPoint = apiManager.TrainRide.points[i + 1];
-			    Debug.Log("Making rails between " + point.stationName + " and " + nextPoint.stationName);
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
 				    new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
 				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng)
 			    );
+			    foreach (var b in bezier.Item1)
+			    {
+				    beziers.Add(b);
+			    }
 			    Tuple<List<Vector3>, List<Vector3>> rails = GenerateRails(bezier);
 			    DisplayRails(rails.Item1, 0);
 			    DisplayRails(rails.Item2, 0);
@@ -183,6 +183,13 @@ public class GameManager : MonoBehaviour
 				trainRide.train.trainType == "Pendolino" ? TrainTypes.Pendolino : TrainTypes.Thomans,
 				new Vector3(100.0f * (float) firstPoint.lat, cityHeight, 100.0f * (float) firstPoint.lng)
 			);
+			
+			TrainPath path = new TrainPath();
+			path.points = beziers;
+
+			train.FollowPath(path);
+
+			trains.Add(train);
 		}
 	}
     // Update is called once per frame
