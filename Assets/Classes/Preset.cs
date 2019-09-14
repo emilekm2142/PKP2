@@ -9,4 +9,6 @@ public class Preset
     public Color color;
     public Texture2D texture;
     public Hat hat;
+    
+    
 }

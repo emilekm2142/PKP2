@@ -61,12 +61,15 @@ public class Wagon : MonoBehaviour
 
     public void ChangeColor(Color c)
     {
-        GetComponent<Renderer>().material.color = c;
+        foreach (var child in GetComponentsInChildren<MeshRenderer>())
+        {
+            child.material.color = c;
+        }
     }
 
     public void ChangeTexture(Texture2D t)
     {
-        GetComponent<Renderer>().material.mainTexture = t;
+        
     }
     
     // Update is called once per frame
