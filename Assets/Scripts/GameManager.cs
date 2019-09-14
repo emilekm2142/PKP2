@@ -176,14 +176,14 @@ public class GameManager : MonoBehaviour
 				new Vector3(100.0f * (float) firstPoint.lat, cityHeight, 100.0f * (float) firstPoint.lng)
 			);
 			
-			TrainPath path = new TrainPath();
-			path.points = beziers;
-
-			train.FollowPath(path);
 			foreach (var user in apiManager.GetTrainUsers(trainRide.trainRideId))
 			{
 				train.AddWagon(user.userId == apiManager.userId);
 			}
+			
+			TrainPath path = new TrainPath();
+			path.points = beziers;
+			train.FollowPath(path);
 
 			trains.Add(train);
 		}
