@@ -27,7 +27,7 @@ public class Train : MonoBehaviour
         {
             Debug.Log(i);
             var d = i; 
-            Run.After(0, () =>
+            Run.After(0.4f, () =>
             {
               
                 Debug.Log(i);

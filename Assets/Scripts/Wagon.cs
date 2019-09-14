@@ -14,7 +14,7 @@ public class Wagon : MonoBehaviour
         
     }
     public void OnTriggerEnter(Collider other){
-        colliding =true;
+        if (transform.position!= new Vector3(0,0,0) ) colliding =true;
     }
 
     public void OnTriggerStay(Collider other)

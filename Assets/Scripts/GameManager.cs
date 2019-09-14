@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     x.positionCount = points.Count;
     for (int i = 0; i < points.Count; i++)
     {
-	    x.SetPosition(i, points[i] + new Vector3(offset,0,0));
+	    x.SetPosition(i, points[i] + new Vector3(offset,cityHeight,0));
     }
 
     return go;
@@ -137,9 +137,9 @@ public class GameManager : MonoBehaviour
 		    float y = path.Item1[i][1];
 		    float z = path.Item1[i][2];
 		    
-		    float dirX = path.Item2[i][0];
-		    float dirY = path.Item2[i][1];
-		    float dirZ = path.Item2[i][2];
+		    float dirX = path.Item2[i][0]*trackWidth/2;
+		    float dirY = path.Item2[i][1]*trackWidth/2;
+		    float dirZ = path.Item2[i][2]*trackWidth/2;
 		    left.Add(new Vector3(x+dirZ, 0, z-dirX));
 		    right.Add(new Vector3(x-dirZ, 0, z+dirX));
 	    }
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
 			    {
 				    beziers.Add(b);
 			    }
-			    Tuple<List<Vector3>, List<Vector3>> rails = GenerateRails(bezier);
+			    Tuple<List<Vector3>, List<Vector3>> rails = GenerateRails(bezier,1.2f);
 			    DisplayRails(rails.Item1, 0);
 			    DisplayRails(rails.Item2, 0);
 		    }
