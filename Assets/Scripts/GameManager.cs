@@ -46,15 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 	    LoadCities();
-        var t = MakeTrain("Tomek", TrainTypes.Thomans, new Vector3(0, 0, 0));
-
-        LoadTrains();
-
-        foreach (var user in apiManager.users)
-        {
-	        t.AddWagon(false);
-        }
-
+	    LoadTrains();
     }
 
     Train MakeTrain(string name, TrainTypes type, Vector3 position)
@@ -180,7 +172,7 @@ public class GameManager : MonoBehaviour
 			
 			Train train = MakeTrain(
 				trainRide.trainRideId,
-				trainRide.train.trainType == "Pendolino" ? TrainTypes.Pendolino : TrainTypes.Thomans,
+				TrainTypes.Thomans,
 				new Vector3(100.0f * (float) firstPoint.lat, cityHeight, 100.0f * (float) firstPoint.lng)
 			);
 			
@@ -188,6 +180,10 @@ public class GameManager : MonoBehaviour
 			path.points = beziers;
 
 			train.FollowPath(path);
+			foreach (var user in apiManager.GetTrainUsers(trainRide.trainRideId))
+			{
+				train.AddWagon(user.userId == apiManager.userId);
+			}
 
 			trains.Add(train);
 		}
