@@ -9,7 +9,7 @@ using UnityEngine;
 public class ApiManager : MonoBehaviour
 {
     private const string baseUrl = "http://10.250.193.41:8080/";
-    private int userId = 1;
+    public int userId = 1;
     public User User { get; private set; }
     public TrainRide TrainRide { get; private set; }
     public List<User> users { get; private set; }
@@ -63,19 +63,10 @@ public class ApiManager : MonoBehaviour
         }
         TrainRide = (TrainRide) deserializer.ReadObject(stream);
     }
-    
+
     public void FetchTrainUsers()
     {
-        HttpWebRequest request = (HttpWebRequest) WebRequest.Create(baseUrl + "train-ride/" + User.currentTrainRide + "/users");
-        HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-
-        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<User>));
-        Stream stream = response.GetResponseStream();
-        if (stream == null)
-        {
-            Debug.LogError("API Response is null");
-        }
-        users = (List<User>) deserializer.ReadObject(stream);
+        users = GetTrainUsers(User.currentTrainRide);
     }
 
     public void SubmitUserPosition(Vector3 position)
@@ -99,6 +90,22 @@ public class ApiManager : MonoBehaviour
             Debug.LogError("API Response is null");
         }
         TrainRides = (List<TrainRide>) deserializer.ReadObject(stream);
+    }
+
+    public List<User> GetTrainUsers(string trainId)
+    {
+        HttpWebRequest request =
+            (HttpWebRequest) WebRequest.Create(baseUrl + "train-ride/" + trainId + "/users");
+        HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+
+        DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<User>));
+        Stream stream = response.GetResponseStream();
+        if (stream == null)
+        {
+            Debug.LogError("API Response is null");
+        }
+
+        return (List<User>) deserializer.ReadObject(stream);
     }
 
 }
