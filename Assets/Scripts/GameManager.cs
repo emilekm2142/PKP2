@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject trainPrefab;
     public GameObject thomasPrefab;
     public GameObject pendolinoPrefab;
+    public GameObject enemyPrefab;
     public List<TrainPath> trainPaths  = new List<TrainPath>();
     public CustomizationManager customizationManager;
     public ApiManager apiManager;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
 	    LoadCities();
 	    LoadTrains();
+	    StartMinigame(trains[0]);
     }
 
     Train MakeTrain(string name, TrainTypes type, Vector3 position)
@@ -188,7 +190,35 @@ public class GameManager : MonoBehaviour
 			trains.Add(train);
 		}
 	}
-    // Update is called once per frame
+
+	private void StartMinigame(Train train)
+	{
+		int enemiesNum = 10;
+		List<Enemy> enemies = new List<Enemy>();
+		Run.EachFrame(() =>
+		{
+			if (enemies.Count < enemiesNum && UnityEngine.Random.Range(0.0f, 1.0f) < 0.1)
+			{
+				float angle = UnityEngine.Random.Range(0.0f, 6.28f);
+				Vector3 offset = new Vector3(Mathf.Sin(angle)*50.0f, 0, Mathf.Cos(angle)*50.0f);
+				var enemyGameObject = Instantiate(enemyPrefab, train.gameObject.transform.position+offset, Quaternion.identity);
+				var enemy = enemyGameObject.GetComponent<Enemy>();
+				enemies.Add(enemy);
+			}
+
+			for (int i = 0; i < enemies.Count; i++)
+			{
+				if (enemies[i].StepTowardsTrain(train) < 1)
+				{
+					Destroy(enemies[i].gameObject);
+					enemies.Remove(enemies[i]);
+				}
+			}
+
+		});
+	}
+
+	// Update is called once per frame
     void Update()
     {
         
