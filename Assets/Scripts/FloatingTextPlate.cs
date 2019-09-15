@@ -8,9 +8,9 @@ public class FloatingTextPlate : MonoBehaviour
     //Orient the camera after all movement is completed this frame to avoid jittering
     void LateUpdate()
     {
-        transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.back,
+        transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward,
             m_Camera.transform.rotation * Vector3.up);
-        transform.Rotate(new Vector3(90, 0, 0));
+//        transform.Rotate(new Vector3(90, 0, 0));
     }
 }
 
