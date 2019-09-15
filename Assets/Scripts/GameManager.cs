@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 	    LoadCities();
 	    LoadTrains();
 	    StartMinigame(trains[0]);
+	    FindObjectOfType	<WalizkaSpawner>().spawn	();
     }
 
    public  Wagon getMyWagon()
@@ -105,8 +106,8 @@ public class GameManager : MonoBehaviour
 	    float angle2 = UnityEngine.Random.Range(0.0f, 6.28f);
 	    angle1 = 0;
 	    angle2 = 0;
-	    Vector3 B = A + new Vector3(Mathf.Cos(angle1)*distance, 0, 0) + new Vector3(Mathf.Sin(angle1), 0, 0);
-	    Vector3 C = D + new Vector3(Mathf.Cos(angle2)*distance, 0, 0) + new Vector3(Mathf.Sin(angle2), 0, 0);
+	    Vector3 B = A + new Vector3(Mathf.Cos(angle1)*UnityEngine.Random.Range(-distance,distance), 0, 0) + new Vector3(Mathf.Sin(angle1), 0, 0);
+	    Vector3 C = D + new Vector3(Mathf.Cos(angle2)*UnityEngine.Random.Range(distance,distance), 0, 0) + new Vector3(Mathf.Sin(angle2), 0, 0);
 	    
 		int interpolationPoints = 1000;
 		float dt = 1.0f / interpolationPoints;
@@ -169,7 +170,7 @@ public class GameManager : MonoBehaviour
 			    Point nextPoint = apiManager.TrainRide.points[i + 1];
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
 				    new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
-				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng),1
+				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng),251
 			    );
 			    foreach (var b in bezier.Item1)
 			    {
