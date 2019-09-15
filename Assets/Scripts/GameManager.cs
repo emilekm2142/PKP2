@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
 
 	private void LoadCities(TrainRide ride)
 	{
+		beziers = new List<Vector3>();
 		int stationsToMake = ride.points.Count;
 	    for (int i = 0; i < stationsToMake; i++)
 	    {
