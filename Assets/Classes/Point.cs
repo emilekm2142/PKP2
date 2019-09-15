@@ -7,11 +7,11 @@ public class Point
     public long pointId { get; set; }
     
     [DataMember]
-    public string stationName { get; set; }
+    public string city { get; set; }
     
     [DataMember]
-    public double lng { get; set; }
+    public double longitude { get; set; }
     
     [DataMember]
-    public double lat { get; set; }
+    public double lattitude { get; set; }
 }
