@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    public Text tooltip;
     public GameObject panel;
     public bool CustomizationDisplayed = false;
     public Text stationText;
@@ -33,6 +34,11 @@ public class UI : MonoBehaviour
 
     }
 
+    public void SetTooltip(string text)
+    {
+        tooltip	.gameObject.SetActive	(true);
+        tooltip.text = text;
+    }
     public void SetHatToCylinder()
     {
         FindObjectOfType<GameManager>().getMyWagon().GetComponent<Wagon>().AddHat(FindObjectOfType<HatsManager>().hats.First(d=>d.type==CoolHatTypes.Cylinder).hat.GetComponent<Hat>());
