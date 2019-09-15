@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     }
     Train MakeTrain(string name, TrainTypes type, Vector3 position)
     {
-	    Debug.Log(position);
 	    var a = Instantiate(trainPrefab, position, Quaternion.identity);
         var train = a.GetComponent<Train>();
         train.name = name;
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     City MakeCity(string name, Vector3 position)
     {
-        var a = Instantiate(cityPrefab, position + new Vector3(UnityEngine.Random.Range	(8,12),cityHeight	 ,UnityEngine.Random.Range(8,12)), Quaternion.identity);
+        var a = Instantiate(cityPrefab, position + new Vector3(UnityEngine.Random.Range	(15,19),cityHeight	 ,UnityEngine.Random.Range(15,19)), Quaternion.identity);
         a.gameObject.name = name;
         a.GetComponent<City>().name = name;
         return a.GetComponent<City>();
@@ -159,8 +158,8 @@ public class GameManager : MonoBehaviour
     }
 
 	private void LoadCities(TrainRide ride)
-	{
-		int stationsToMake = ride.points.Count;
+    {
+	    int stationsToMake = Math.Min(10, ride.points.Count);
 	    for (int i = 0; i < stationsToMake; i++)
 	    {
 		    Point point = ride.points[i];
@@ -168,15 +167,15 @@ public class GameManager : MonoBehaviour
 		    {
 			    continue;
 		    }
-		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude));
+		    MakeCity(point.city, new Vector3(100.0f * (float) point.latitude, cityHeight, 100.0f * (float) point.longitude));
 		    cities.Add(point.city);
 
 		    if (i < stationsToMake - 1)
 		    {
 			    Point nextPoint = ride.points[i + 1];
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
-				    new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude),
-				    new Vector3(Consts.mapScale * (float) nextPoint.latitude, cityHeight, Consts.mapScale * (float) nextPoint.longitude),1
+				    new Vector3(100.0f * (float) point.latitude, cityHeight, 100.0f * (float) point.longitude),
+				    new Vector3(100.0f * (float) nextPoint.latitude, cityHeight, 100.0f * (float) nextPoint.longitude),1
 			    );
 			    foreach (var b in bezier.Item1)
 			    {
@@ -199,7 +198,7 @@ public class GameManager : MonoBehaviour
 			Train train = MakeTrain(
 				trainRide.trainRideId,
 				trainRide.train.trainType=="Pendolino"?TrainTypes.Pendolino:TrainTypes.Thomans,
-				new Vector3(Consts.mapScale * (float) firstPoint.latitude, cityHeight, Consts.mapScale * (float) firstPoint.longitude)
+				new Vector3(100.0f * (float) firstPoint.latitude, cityHeight, 100.0f * (float) firstPoint.longitude)
 			);
 			
 			foreach (var user in apiManager.GetTrainUsers(trainRide.trainRideId))
