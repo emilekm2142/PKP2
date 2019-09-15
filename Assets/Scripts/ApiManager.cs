@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ApiManager : MonoBehaviour
 {
-    private const string baseUrl = "http://10.250.193.41:8080/";
+    private const string baseUrl = "http://ec2-54-160-239-146.compute-1.amazonaws.com:8080/";
     public int userId = 1;
     public User User { get; private set; }
 //    public TrainRide TrainRide { get; private set; }

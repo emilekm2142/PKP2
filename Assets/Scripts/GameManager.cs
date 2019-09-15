@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
 	    LoadTrains();
 	    StartMinigame(trains[0]);
-	    FindObjectOfType	<WalizkaSpawner>().spawn	();
+	    //FindObjectOfType	<WalizkaSpawner>().spawn	();
     }
 
    public  Wagon getMyWagon()
@@ -165,12 +165,6 @@ public class GameManager : MonoBehaviour
 	    for (int i = 0; i < stationsToMake; i++)
 	    {
 		    Point point = ride.points[i];
-		    if (cities.Contains(point.city))
-		    {
-			    continue;
-		    }
-		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude));
-		    cities.Add(point.city);
 
 		    if (i < stationsToMake - 1)
 		    {
@@ -187,6 +181,13 @@ public class GameManager : MonoBehaviour
 			    DisplayRails(rails.Item1, 0);
 			    DisplayRails(rails.Item2, 0);
 		    }
+		    
+		    if (cities.Contains(point.city))
+		    {
+			    continue;
+		    }
+		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude));
+		    cities.Add(point.city);
 	    }
     }
 
@@ -242,10 +243,19 @@ public class GameManager : MonoBehaviour
 
 			for (int i = 0; i < enemies.Count; i++)
 			{
-				if (enemies[i].StepTowardsTrain(train) < 1)
+				float distance = enemies[i].StepTowardsTrain(train);
+				if (enemies[i].IsExploded || distance < 1)
 				{
 					Destroy(enemies[i].gameObject);
 					enemies.Remove(enemies[i]);
+					//Wybucha i zabbiera graczowi kase
+				}
+
+				else if (enemies[i].IsClicked)
+				{
+					Destroy(enemies[i].gameObject);
+					enemies.Remove(enemies[i]);
+					//Wybucha i daje graczu kase cy jakis shit
 				}
 			}
 
