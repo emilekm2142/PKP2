@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1685357666187830007}
   - component: {fileID: 364071323216130584}
   - component: {fileID: 3289692049684802542}
+  - component: {fileID: 6477451108180338962}
   m_Layer: 0
   m_Name: LokomotywaPrefab 1
   m_TagString: Untagged
@@ -75,6 +76,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6477451108180338962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774725010259227634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51a830bd1681ef47acd3c4d43e92de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Pendolino
 --- !u!1001 &4362983754565035288
 PrefabInstance:
   m_ObjectHideFlags: 0

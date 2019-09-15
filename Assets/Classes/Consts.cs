@@ -1,4 +1,4 @@
 public class Consts
 {
-    public const float mapScale = 200.0f;
+    public const float mapScale = 500.0f;
 }

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 2440280975966010424}
   - component: {fileID: 2440280975966010430}
   - component: {fileID: 2440280975966010425}
+  - component: {fileID: 2463129103583819254}
   m_Layer: 0
   m_Name: New Text
   m_TagString: Untagged
@@ -134,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2440280975966010427}
   m_LocalRotation: {x: -0, y: -0.9906594, z: -0, w: 0.13635942}
-  m_LocalPosition: {x: 0, y: 7.2, z: 0}
+  m_LocalPosition: {x: 3.36, y: 11.95, z: -0.94}
   m_LocalScale: {x: 0.20719, y: 0.20719, z: 0.20719}
   m_Children: []
   m_Father: {fileID: 2440280975088206822}
@@ -200,6 +201,19 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &2463129103583819254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440280975966010427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89d2f73352e0824d8933994dc60d17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
 --- !u!1001 &7437974241584198322
 PrefabInstance:
   m_ObjectHideFlags: 0
