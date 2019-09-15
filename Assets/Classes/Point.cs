@@ -13,5 +13,5 @@ public class Point
     public double longitude { get; set; }
     
     [DataMember]
-    public double lattitude { get; set; }
+    public double latitude { get; set; }
 }
