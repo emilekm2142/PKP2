@@ -165,12 +165,6 @@ public class GameManager : MonoBehaviour
 	    for (int i = 0; i < stationsToMake; i++)
 	    {
 		    Point point = ride.points[i];
-		    if (cities.Contains(point.city))
-		    {
-			    continue;
-		    }
-		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude));
-		    cities.Add(point.city);
 
 		    if (i < stationsToMake - 1)
 		    {
@@ -187,6 +181,13 @@ public class GameManager : MonoBehaviour
 			    DisplayRails(rails.Item1, 0);
 			    DisplayRails(rails.Item2, 0);
 		    }
+		    
+		    if (cities.Contains(point.city))
+		    {
+			    continue;
+		    }
+		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.latitude, cityHeight, Consts.mapScale * (float) point.longitude));
+		    cities.Add(point.city);
 	    }
     }
 
