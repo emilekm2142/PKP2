@@ -8,7 +8,7 @@ public class Preset
     public string name;
     public Color color;
     public Texture2D texture;
-    public Hat hat;
+    public GameObject hat;
     
     
 }

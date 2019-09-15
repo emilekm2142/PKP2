@@ -39,14 +39,14 @@ public class Wagon : MonoBehaviour
     public void FollowPath(TrainPath path)
     {
         currentPath = path;
-        Debug.Log("going");
+   
         var i = 0;
         Run.EachFrame(() =>
         {
         
             if (!colliding)
             {
-                Debug.Log("going");
+          
                 if (i < currentPath.points.Count - 1)
                 {
                    

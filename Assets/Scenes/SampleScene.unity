@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 503966743}
   - component: {fileID: 503966745}
   - component: {fileID: 503966746}
+  - component: {fileID: 503966747}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -211,6 +212,24 @@ MonoBehaviour:
   - hat: {fileID: 2301700935681775627, guid: 7230714380e4c1a4397f4a92a9de0ba8, type: 3}
     type: 0
     name: Hussar
+--- !u!114 &503966747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503966742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22bb07588e070b199c8873645601c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presetList:
+  - id: 0
+    name: JOY
+    color: {r: 1, g: 1, b: 1, a: 0}
+    texture: {fileID: 0}
+    hat: {fileID: 2301700935681775627, guid: 7230714380e4c1a4397f4a92a9de0ba8, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
