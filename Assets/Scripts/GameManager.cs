@@ -179,7 +179,13 @@ public class GameManager : MonoBehaviour
 			
 			foreach (var user in apiManager.GetTrainUsers(trainRide.trainRideId))
 			{
-				train.AddWagon(user.userId == apiManager.userId);
+				bool isPlayer = user.userId == apiManager.userId;
+				Wagon wagon = train.AddWagon(isPlayer);
+				if (isPlayer)
+				{
+					customizationManager.myWagon = wagon;
+					customizationManager.Fetch();
+				}
 			}
 			
 			TrainPath path = new TrainPath();

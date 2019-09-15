@@ -18,7 +18,7 @@ public class CustomizationManager : MonoBehaviour
         
     }
 
-    void Fetch()
+    public void Fetch()
     {
         ApiManager apiManager = GameObject.FindObjectOfType<ApiManager>();
         PresetManager presetManager = GameObject.FindObjectOfType<PresetManager>();
