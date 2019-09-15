@@ -151,7 +151,8 @@ public class GameManager : MonoBehaviour
 			    Point nextPoint = apiManager.TrainRide.points[i + 1];
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
 				    new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
-				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng)
+				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng), Vector3.Distance(new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
+					    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng))
 			    );
 			    foreach (var b in bezier.Item1)
 			    {

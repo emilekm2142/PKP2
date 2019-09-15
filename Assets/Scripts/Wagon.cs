@@ -14,7 +14,7 @@ public class Wagon : MonoBehaviour
         
     }
     public void OnTriggerEnter(Collider other){
-        if (transform.position!= new Vector3(5,0,5) && !Utils.HasComponent<City>(other.gameObject) ) colliding =true;
+        if (transform.position!= new Vector3(5,0,5) && !Utils.HasComponent<City>(other.gameObject)) colliding =true;
     }
 
     public void OnTriggerStay(Collider other)
