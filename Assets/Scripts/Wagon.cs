@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
-    
+    public Train parent;
+    public int number;
+    public Light playerLight;
     public List<Hat> currentHats = new List<Hat>();
     public bool colliding;
     // Start is called before the first frame update
@@ -41,11 +43,11 @@ public class Wagon : MonoBehaviour
         currentHats.Add(newHat.GetComponent<Hat>());
         
     }
-    public void FollowPath(TrainPath path)
+    public void FollowPath(TrainPath path,int firstStep)
     {
         currentPath = path;
    
-        var i = 0;
+        var i = firstStep;
         Run.EachFrame(() =>
         {
         

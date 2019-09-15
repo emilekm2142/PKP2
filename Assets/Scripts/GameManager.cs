@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
 			
 			Train train = MakeTrain(
 				trainRide.trainRideId,
-				TrainTypes.Thomans,
+				trainRide.train.trainType=="Pendolino"?TrainTypes.Pendolino:TrainTypes.Thomans,
 				new Vector3(100.0f * (float) firstPoint.lat, cityHeight, 100.0f * (float) firstPoint.lng)
 			);
 			

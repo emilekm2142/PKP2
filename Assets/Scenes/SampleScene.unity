@@ -154,9 +154,9 @@ RectTransform:
   m_Father: {fileID: 346055235}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -379.99997, y: -277}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 92.8, y: 28.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44105908
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -556,7 +556,7 @@ Canvas:
   m_GameObject: {fileID: 346055231}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -776,13 +776,15 @@ MonoBehaviour:
     type: 3}
   thomasPrefab: {fileID: 72887862775951650, guid: a3c4f911925096444982d578329685cb,
     type: 3}
-  pendolinoPrefab: {fileID: 7883145217108226637, guid: b793ae08b9ef4294396ad601733f91c6,
+  pendolinoPrefab: {fileID: 5774725010259227634, guid: 748f851632806714a985c5a15a6216b4,
     type: 3}
+  enemyPrefab: {fileID: 0}
   trainPaths: []
   customizationManager: {fileID: 503966745}
   apiManager: {fileID: 1059966374}
   trains: []
   beziers: []
+  EnemiesNum: 10
 --- !u!4 &503966744
 Transform:
   m_ObjectHideFlags: 0
@@ -979,9 +981,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 80, y: 15}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722095994
 MonoBehaviour:
@@ -1600,9 +1602,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 460, y: 0}
-  m_SizeDelta: {x: 920, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 472.8, y: 321.1}
+  m_SizeDelta: {x: 920, y: 353}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1425293074
 GameObject:

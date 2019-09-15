@@ -23,18 +23,19 @@ public class Train : MonoBehaviour
     public void FollowPath(TrainPath path)
     {
         Start();
-        thomas.FollowPath(path);
-        for (int i = 0; i < wagons.Count; i++)
+        thomas.FollowPath(path, 85*wagons	.Count);
+        Run.After(0, () =>
         {
-            Debug.Log(i);
-            var d = i; 
-            Run.After(0, () =>
+            for (int i = 0; i < wagons.Count; i++)
             {
-                
-                wagons[d].FollowPath(path);
-              });
-           
-        }
+                Debug.Log(i);
+                var d = i;
+                wagons[d].number = d;
+                wagons[d].parent = this;
+                Run.After(0, () => { wagons[d].FollowPath(path, (wagons	.Count-d)*76); });
+
+            }
+        });
     }
 
     public Wagon AddWagon(bool isPlayer)

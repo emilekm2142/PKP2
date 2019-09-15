@@ -11,10 +11,10 @@ public class Thomas : MonoBehaviour
         
     }
 
-    public void FollowPath(TrainPath path)
+    public void FollowPath(TrainPath path, int firstStep)
     {
         currentPath = path;
-        var i = 0;
+        var i = firstStep;
         Run.EachFrame(() =>
         {
             if (i < currentPath.points.Count - 1)
