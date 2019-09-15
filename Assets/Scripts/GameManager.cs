@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyPrefab;
     public List<TrainPath> trainPaths  = new List<TrainPath>();
     public CustomizationManager customizationManager;
+    public CameraDrag cameraDrag;
     public ApiManager apiManager;
     public List<Train> trains;
     public List<Vector3> beziers = new List<Vector3>();
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
 	    customizationManager = GameObject.FindObjectOfType<CustomizationManager>();
         apiManager = GameObject.FindObjectOfType<ApiManager>();
+        cameraDrag = GameObject.FindObjectOfType<CameraDrag>();
     }
 
     GameObject DisplayRails(List<Vector3> points, float offset)
@@ -201,6 +203,7 @@ public class GameManager : MonoBehaviour
 					Camera.main.transform.SetParent(wagon.transform);
 					Camera.main.transform.position = new Vector3(-10, 10, -6);
 					Camera.main.transform.rotation = Quaternion.Euler(20, 50, 0);
+					cameraDrag.target = train;
 					customizationManager.myWagon = wagon;
 					customizationManager.Fetch();
 				}

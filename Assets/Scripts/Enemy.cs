@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour
     {
         Vector3 diff = train.gameObject.transform.position - gameObject.transform.position;
         float norm = Mathf.Sqrt(diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);
-        gameObject.transform.Translate(diff/norm*speed);
+        
+        gameObject.transform.LookAt(train.gameObject.transform.position);
+        gameObject.transform.Translate(new Vector3(0f,0f, speed));
         return norm;
     }
 

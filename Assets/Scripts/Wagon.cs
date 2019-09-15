@@ -58,7 +58,7 @@ public class Wagon : MonoBehaviour
                 {
                    
                     gameObject.transform.position = currentPath.points[i];
-                    gameObject.transform.LookAt(currentPath.points[i + 1]);
+                    gameObject.transform.LookAt(currentPath.points[i + 5]);
                     i++;
                 }
             }
