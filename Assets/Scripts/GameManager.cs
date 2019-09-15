@@ -18,12 +18,15 @@ public class GameManager : MonoBehaviour
     public GameObject trainPrefab;
     public GameObject thomasPrefab;
     public GameObject pendolinoPrefab;
+    public GameObject enemyPrefab;
     public List<TrainPath> trainPaths  = new List<TrainPath>();
     public CustomizationManager customizationManager;
     public ApiManager apiManager;
     public List<Train> trains;
     public List<Vector3> beziers = new List<Vector3>();
     public const float cityHeight = 1.276719f;
+
+    public int EnemiesNum = 10;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
 	    LoadCities();
 	    LoadTrains();
+	    StartMinigame(trains[0]);
     }
 
    public  Wagon getMyWagon()
@@ -194,6 +198,9 @@ public class GameManager : MonoBehaviour
 				Wagon wagon = train.AddWagon(isPlayer);
 				if (isPlayer)
 				{
+					Camera.main.transform.SetParent(wagon.transform);
+					Camera.main.transform.position = new Vector3(-10, 10, -6);
+					Camera.main.transform.rotation = Quaternion.Euler(20, 50, 0);
 					customizationManager.myWagon = wagon;
 					customizationManager.Fetch();
 				}
@@ -206,7 +213,34 @@ public class GameManager : MonoBehaviour
 			trains.Add(train);
 		}
 	}
-    // Update is called once per frame
+
+	private void StartMinigame(Train train)
+	{
+		List<Enemy> enemies = new List<Enemy>();
+		Run.EachFrame(() =>
+		{
+			if (enemies.Count < EnemiesNum && UnityEngine.Random.Range(0.0f, 1.0f) < 0.01)
+			{
+				float angle = UnityEngine.Random.Range(0.0f, 6.28f);
+				Vector3 offset = new Vector3(Mathf.Sin(angle)*50.0f, 0, Mathf.Cos(angle)*50.0f);
+				var enemyGameObject = Instantiate(enemyPrefab, train.gameObject.transform.position+offset, Quaternion.identity);
+				var enemy = enemyGameObject.GetComponent<Enemy>();
+				enemies.Add(enemy);
+			}
+
+			for (int i = 0; i < enemies.Count; i++)
+			{
+				if (enemies[i].StepTowardsTrain(train) < 1)
+				{
+					Destroy(enemies[i].gameObject);
+					enemies.Remove(enemies[i]);
+				}
+			}
+
+		});
+	}
+
+	// Update is called once per frame
     void Update()
     {
         
