@@ -183,6 +183,9 @@ public class GameManager : MonoBehaviour
 				Wagon wagon = train.AddWagon(isPlayer);
 				if (isPlayer)
 				{
+					Camera.main.transform.SetParent(wagon.transform);
+					Camera.main.transform.position = new Vector3(-10, 10, -6);
+					Camera.main.transform.rotation = Quaternion.Euler(20, 50, 0);
 					customizationManager.myWagon = wagon;
 					customizationManager.Fetch();
 				}
