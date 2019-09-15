@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
+    
     public List<Hat> currentHats = new List<Hat>();
     public bool colliding;
     // Start is called before the first frame update
@@ -15,6 +16,10 @@ public class Wagon : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other){
         if (transform.position!= new Vector3(5,0,5) && !Utils.HasComponent<City>(other.gameObject)) colliding =true;
+        if (Utils.HasComponent<City>(other.gameObject))
+        {
+            FindObjectOfType	<UI>().ShowStation	();
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -70,7 +75,7 @@ public class Wagon : MonoBehaviour
             child.material.color = c;
         }
     }
-
+    
     public void ChangeTexture(Texture2D t)
     {
         
@@ -79,6 +84,6 @@ public class Wagon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+            
     }
 }

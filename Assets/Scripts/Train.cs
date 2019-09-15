@@ -13,7 +13,7 @@ public class Train : MonoBehaviour
 
     // Start is called before the first frame update
     public Thomas thomas;
-    List<Wagon> wagons = new List<Wagon>();
+    public List<Wagon> wagons = new List<Wagon>();
 
     void Start()
     {
@@ -44,7 +44,8 @@ public class Train : MonoBehaviour
         wagon.name ="Wagon of " + name;
         if (isPlayer)
         {
-            wagon.GetComponent<Wagon>().AddHat(FindObjectOfType<HatsManager>().hats.First(d=>d.type==CoolHatTypes.Hussar).hat.GetComponent<Hat>());
+            wagon.AddComponent<Player>();
+            //wagon.GetComponent<Wagon>().AddHat(FindObjectOfType<HatsManager>().hats.First(d=>d.type==CoolHatTypes.Cylinder).hat.GetComponent<Hat>());
         }
         wagons.Add(wagon.GetComponent<Wagon>());
         return wagon.GetComponent<Wagon>();

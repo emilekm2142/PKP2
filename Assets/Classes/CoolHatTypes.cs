@@ -1,5 +1,5 @@
 ﻿
     public enum CoolHatTypes
     {
-        Hussar
+        Hussar, Cylinder, Beret
     }

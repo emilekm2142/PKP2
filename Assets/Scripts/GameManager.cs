@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     GameObject DisplayRails(List<Vector3> points, float offset)
     { 
-	    var go = Instantiate(railSegmentPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+	    var go = Instantiate(railSegmentPrefab, new Vector3(0, cityHeight	, 0), Quaternion.identity);
     var x = go.GetComponent<LineRenderer>();
     x.positionCount = points.Count;
     for (int i = 0; i < points.Count; i++)
@@ -49,6 +49,18 @@ public class GameManager : MonoBehaviour
 	    LoadTrains();
     }
 
+   public  Wagon getMyWagon()
+    {
+	    foreach (var i in trains)
+	    {
+		    foreach (var j in i.wagons)
+		    {
+			    if (Utils.HasComponent	<Player>(j.gameObject)){return j;}
+		    }
+	    }
+
+	    return null;
+    }
     Train MakeTrain(string name, TrainTypes type, Vector3 position)
     {
 	    var a = Instantiate(trainPrefab, position, Quaternion.identity);
@@ -68,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     City MakeCity(string name, Vector3 position)
     {
-        var a = Instantiate(cityPrefab, position, Quaternion.identity);
+        var a = Instantiate(cityPrefab, position + new Vector3(UnityEngine.Random.Range	(8,12),cityHeight	 ,UnityEngine.Random.Range(8,12)), Quaternion.identity);
         a.gameObject.name = name;
         a.GetComponent<City>().name = name;
         return a.GetComponent<City>();
@@ -151,8 +163,7 @@ public class GameManager : MonoBehaviour
 			    Point nextPoint = apiManager.TrainRide.points[i + 1];
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
 				    new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
-				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng), Vector3.Distance(new Vector3(100.0f * (float) point.lat, cityHeight, 100.0f * (float) point.lng),
-					    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng))
+				    new Vector3(100.0f * (float) nextPoint.lat, cityHeight, 100.0f * (float) nextPoint.lng),1
 			    );
 			    foreach (var b in bezier.Item1)
 			    {
