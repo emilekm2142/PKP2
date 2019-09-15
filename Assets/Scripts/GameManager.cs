@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public List<Train> trains;
     public List<Vector3> beziers = new List<Vector3>();
     public const float cityHeight = 1.276719f;
+
+    public int EnemiesNum = 10;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -203,11 +205,10 @@ public class GameManager : MonoBehaviour
 
 	private void StartMinigame(Train train)
 	{
-		int enemiesNum = 10;
 		List<Enemy> enemies = new List<Enemy>();
 		Run.EachFrame(() =>
 		{
-			if (enemies.Count < enemiesNum && UnityEngine.Random.Range(0.0f, 1.0f) < 0.1)
+			if (enemies.Count < EnemiesNum && UnityEngine.Random.Range(0.0f, 1.0f) < 0.01)
 			{
 				float angle = UnityEngine.Random.Range(0.0f, 6.28f);
 				Vector3 offset = new Vector3(Mathf.Sin(angle)*50.0f, 0, Mathf.Cos(angle)*50.0f);
