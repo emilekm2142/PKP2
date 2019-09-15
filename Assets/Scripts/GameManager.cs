@@ -166,15 +166,15 @@ public class GameManager : MonoBehaviour
 		    {
 			    continue;
 		    }
-		    MakeCity(point.city, new Vector3(100.0f * (float) point.lattitude, cityHeight, 100.0f * (float) point.longitude));
+		    MakeCity(point.city, new Vector3(Consts.mapScale * (float) point.lattitude, cityHeight, Consts.mapScale * (float) point.longitude));
 		    cities.Add(point.city);
 
 		    if (i < stationsToMake - 1)
 		    {
 			    Point nextPoint = ride.points[i + 1];
 			    Tuple<List<Vector3>, List<Vector3>> bezier = MakeBezierBetweenTwoPoints(
-				    new Vector3(100.0f * (float) point.lattitude, cityHeight, 100.0f * (float) point.longitude),
-				    new Vector3(100.0f * (float) nextPoint.lattitude, cityHeight, 100.0f * (float) nextPoint.longitude),1
+				    new Vector3(Consts.mapScale * (float) point.lattitude, cityHeight, Consts.mapScale * (float) point.longitude),
+				    new Vector3(Consts.mapScale * (float) nextPoint.lattitude, cityHeight, Consts.mapScale * (float) nextPoint.longitude),1
 			    );
 			    foreach (var b in bezier.Item1)
 			    {
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
 			Train train = MakeTrain(
 				trainRide.trainRideId,
 				trainRide.train.trainType=="Pendolino"?TrainTypes.Pendolino:TrainTypes.Thomans,
-				new Vector3(100.0f * (float) firstPoint.lattitude, cityHeight, 100.0f * (float) firstPoint.longitude)
+				new Vector3(Consts.mapScale * (float) firstPoint.lattitude, cityHeight, Consts.mapScale * (float) firstPoint.longitude)
 			);
 			
 			foreach (var user in apiManager.GetTrainUsers(trainRide.trainRideId))

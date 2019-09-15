@@ -72,7 +72,7 @@ public class ApiManager : MonoBehaviour
     public void SubmitUserPosition(Vector3 position)
     {
         HttpWebRequest request = (HttpWebRequest) WebRequest.Create(
-            baseUrl + "user/" + User.currentTrainRide + "/locate?lat=" + position.x / 100.0f + "&lng=" + position.z
+            baseUrl + "user/" + User.currentTrainRide + "/locate?lat=" + position.x / Consts.mapScale + "&lng=" + position.z / Consts.mapScale
         );
         request.Method = "PUT";
         request.GetResponse();
