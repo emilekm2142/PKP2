@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Train : MonoBehaviour
@@ -29,9 +30,7 @@ public class Train : MonoBehaviour
             var d = i; 
             Run.After(0, () =>
             {
-              
-                Debug.Log(i);
-                Debug.Log(d);
+                
                 wagons[d].FollowPath(path);
               });
            
@@ -43,7 +42,10 @@ public class Train : MonoBehaviour
         var wagon = Instantiate(GameObject.FindObjectOfType<GameManager>().wagonPrefab, new Vector3(5, 0, 5),
             Quaternion.identity);
         wagon.name ="Wagon of " + name;
-       
+        if (isPlayer)
+        {
+            wagon.GetComponent<Wagon>().AddHat(FindObjectOfType<HatsManager>().hats.First(d=>d.type==CoolHatTypes.Hussar).hat.GetComponent<Hat>());
+        }
         wagons.Add(wagon.GetComponent<Wagon>());
         return wagon.GetComponent<Wagon>();
     }

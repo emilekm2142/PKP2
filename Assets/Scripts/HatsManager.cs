@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class HatDataHolder
 {
-    public Hat hat;
+    public GameObject hat;
     public CoolHatTypes type;
     public string name;
 }

@@ -14,7 +14,7 @@ public class Wagon : MonoBehaviour
         
     }
     public void OnTriggerEnter(Collider other){
-        colliding =true;
+        if (transform.position!= new Vector3(5,0,5) && !Utils.HasComponent<City>(other.gameObject)) colliding =true;
     }
 
     public void OnTriggerStay(Collider other)
@@ -39,13 +39,17 @@ public class Wagon : MonoBehaviour
     public void FollowPath(TrainPath path)
     {
         currentPath = path;
+   
         var i = 0;
         Run.EachFrame(() =>
         {
+        
             if (!colliding)
             {
+          
                 if (i < currentPath.points.Count - 1)
                 {
+                   
                     gameObject.transform.position = currentPath.points[i];
                     gameObject.transform.LookAt(currentPath.points[i + 1]);
                     i++;
@@ -61,12 +65,15 @@ public class Wagon : MonoBehaviour
 
     public void ChangeColor(Color c)
     {
-        GetComponent<Renderer>().material.color = c;
+        foreach (var child in GetComponentsInChildren<MeshRenderer>())
+        {
+            child.material.color = c;
+        }
     }
 
     public void ChangeTexture(Texture2D t)
     {
-        GetComponent<Renderer>().material.mainTexture = t;
+        
     }
     
     // Update is called once per frame
