@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
 	    LoadTrains();
 	    StartMinigame(trains[0]);
-	    FindObjectOfType	<WalizkaSpawner>().spawn	();
+	    //FindObjectOfType	<WalizkaSpawner>().spawn	();
     }
 
    public  Wagon getMyWagon()
@@ -243,10 +243,19 @@ public class GameManager : MonoBehaviour
 
 			for (int i = 0; i < enemies.Count; i++)
 			{
-				if (enemies[i].StepTowardsTrain(train) < 1)
+				float distance = enemies[i].StepTowardsTrain(train);
+				if (enemies[i].IsExploded || distance < 1)
 				{
 					Destroy(enemies[i].gameObject);
 					enemies.Remove(enemies[i]);
+					//Wybucha i zabbiera graczowi kase
+				}
+
+				else if (enemies[i].IsClicked)
+				{
+					Destroy(enemies[i].gameObject);
+					enemies.Remove(enemies[i]);
+					//Wybucha i daje graczu kase cy jakis shit
 				}
 			}
 

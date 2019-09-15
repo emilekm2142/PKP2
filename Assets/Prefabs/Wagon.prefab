@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e11de91682b64408f5e546aec43809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  number: 0
   playerLight: {fileID: 8452644786261185306}
   currentHats: []
   colliding: 0
@@ -60,7 +62,7 @@ BoxCollider:
   m_GameObject: {fileID: 965934575054040264}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.8598542, y: 2.3459847, z: 9.023269}
   m_Center: {x: 0.1750896, y: 1.702932, z: 0.53396654}
@@ -165,11 +167,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711032512195227099}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 4e2e55dfe3ded2e4388ca98d9bfc7fcb,
-        type: 3}
-      propertyPath: m_Name
-      value: carriage
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4e2e55dfe3ded2e4388ca98d9bfc7fcb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -235,6 +232,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4e2e55dfe3ded2e4388ca98d9bfc7fcb,
+        type: 3}
+      propertyPath: m_Name
+      value: carriage
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e2e55dfe3ded2e4388ca98d9bfc7fcb, type: 3}
 --- !u!4 &343347072675798553 stripped
@@ -250,16 +252,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711032512195227099}
     m_Modifications:
-    - target: {fileID: 3026047225961082517, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
-        type: 3}
-      propertyPath: m_Name
-      value: playerLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 3026047225961082517, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6051009032542920625, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -313,6 +305,16 @@ PrefabInstance:
     - target: {fileID: 6051009032542920625, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026047225961082517, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
+        type: 3}
+      propertyPath: m_Name
+      value: playerLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026047225961082517, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1273359824101029221, guid: 1e4382afdcc7b924e8fb24d6afc79e57,
